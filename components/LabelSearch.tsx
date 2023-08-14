@@ -5,6 +5,7 @@ import React from 'react';
 import { LabelData } from '@/types';
 
 import { LabelList } from './LabelList';
+import {DetailContainer} from "./DetailContainer";
 
 export const LabelSearch: React.FC = () => {
   const [searchValue, setSearchValue] = React.useState('');
@@ -39,7 +40,7 @@ export const LabelSearch: React.FC = () => {
         placeholder="Label ID"
         withAsterisk
       />
-      <LabelList labels={labels} />
+      <DetailContainer labels={labels} search={searchValue} />
     </div>
   );
 };
