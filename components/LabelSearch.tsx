@@ -2,8 +2,15 @@ import { TextInput } from '@mantine/core';
 import { useDebouncedValue } from '@mantine/hooks';
 import React from 'react';
 
+interface LabelData {
+  id: number;
+  label_id: string;
+  shipping_tracking_code: string;
+}
+
 export const LabelSearch: React.FC = () => {
   const [searchValue, setSearchValue] = React.useState('');
+  const [labels, setLabels] = React.useState<LabelData[]>([]);
   const [debounced] = useDebouncedValue(searchValue, 250);
 
   function handleLabelChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -11,7 +18,18 @@ export const LabelSearch: React.FC = () => {
   }
 
   React.useEffect(() => {
-    console.log(debounced);
+    async function fetchSearchResults() {
+      const response = await fetch(`/api/labels/search?id=${debounced}`)
+        .then((res) => res.json())
+        .catch((e) => console.error(e));
+      setLabels(response);
+    }
+
+    if (debounced.length > 0) {
+      void fetchSearchResults();
+    } else {
+      setLabels([]);
+    }
   }, [debounced]);
 
   return (
