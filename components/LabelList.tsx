@@ -1,5 +1,6 @@
 import React from 'react';
 import { LabelData } from '@/types';
+import { LabelDisplay } from './LabelDisplay';
 
 interface Props {
   labels: LabelData[];
@@ -10,7 +11,9 @@ export const LabelList: React.FC<Props> = (props) => {
     return null;
   }
 
-  return (
-    <pre>{JSON.stringify(props.labels, null, 2)}</pre>
-  );
+  const content = props.labels.map((label) => (
+    <LabelDisplay key={label.id} label={label} />
+  ));
+
+  return <>{content}</>;
 };
