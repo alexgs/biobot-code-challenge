@@ -1,0 +1,1 @@
+export { LabelSearch } from './LabelSearch';
