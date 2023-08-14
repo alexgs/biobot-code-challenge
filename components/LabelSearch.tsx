@@ -34,6 +34,7 @@ export const LabelSearch: React.FC = () => {
     <div>
       <TextInput
         label="Please enter your label ID to get started"
+        mb="md"
         onChange={handleLabelChange}
         placeholder="Label ID"
         withAsterisk
