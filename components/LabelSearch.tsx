@@ -2,11 +2,9 @@ import { TextInput } from '@mantine/core';
 import { useDebouncedValue } from '@mantine/hooks';
 import React from 'react';
 
-interface LabelData {
-  id: number;
-  label_id: string;
-  shipping_tracking_code: string;
-}
+import { LabelData } from '@/types';
+
+import { LabelList } from './LabelList';
 
 export const LabelSearch: React.FC = () => {
   const [searchValue, setSearchValue] = React.useState('');
@@ -40,6 +38,7 @@ export const LabelSearch: React.FC = () => {
         placeholder="Label ID"
         withAsterisk
       />
+      <LabelList labels={labels} />
     </div>
   );
 };
