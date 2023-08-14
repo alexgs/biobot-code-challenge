@@ -4,8 +4,12 @@ import React from 'react';
 
 import { LabelData } from '@/types';
 
-import { LabelList } from './LabelList';
-import {DetailContainer} from "./DetailContainer";
+import { DetailContainer } from './DetailContainer';
+
+// TODO If desired, this could be rendered as a [true autocomplete
+//   component][1], but I think that this satisfies the requirements to be
+//   intuitive, visually appealing, and performant.
+//   [1]: https://mantine.dev/core/autocomplete/
 
 export const LabelSearch: React.FC = () => {
   const [searchValue, setSearchValue] = React.useState('');
@@ -20,7 +24,7 @@ export const LabelSearch: React.FC = () => {
     async function fetchSearchResults() {
       const response = await fetch(`/api/labels/search?id=${debounced}`)
         .then((res) => res.json())
-        .catch((e) => console.error(e));
+        .catch((e) => console.error(e)); // TODO Improve error handling
       setLabels(response);
     }
 
